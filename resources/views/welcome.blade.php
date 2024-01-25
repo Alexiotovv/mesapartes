@@ -48,26 +48,22 @@
     
         // Configuración de la solicitud AJAX
         $.ajax({
-            //url: 'http://200.48.76.125/wsiopidetramite/IOTramite?wsdl',
             url: 'https://ws3.pide.gob.pe/services/PcmIMgdEntidad.PcmIMgdEntidadHttpsSoap11Endpoint',
             type: 'GET',
             contentType: 'text/xml',
             crossDomain: true,
-            beforeSend: function(xhr) { // Agregar esta función
-                xhr.setRequestHeader("Access-Control-Allow-Origin", "http://45.5.58.101");
-                //xhr.setRequestHeader("Access-Control-Allow-Origin");
-            },
             success: function (data, status, jqXHR) {
-                alert("esta bien")
+                alert("Está bien")
                 console.log(data);
                 console.log(status);
             },
             error: function (jqXHR, status, error) {
-                alert("with error")
+                alert("Con error")
                 console.error(error);
                 console.log(status);
             }
         });
+
 
     });
 
