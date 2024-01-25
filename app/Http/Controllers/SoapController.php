@@ -9,6 +9,8 @@ class SoapController extends Controller
 {
     public function consumeSoap(Request $request)
     {
+        return response('Llego al backend', 200);
+
         // Configurar el servicio SOAP
         SoapWrapper::add(function ($service) {
             $service
