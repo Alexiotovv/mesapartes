@@ -56,16 +56,17 @@
                 xhr.setRequestHeader("Access-Control-Allow-Origin", "http://10.10.10.251");
             },
             success: function (data, status, jqXHR) {
-                alert("algo ok")
+                alert("esta bien")
                 console.log(data);
                 console.log(status);
             },
             error: function (jqXHR, status, error) {
-                alert("algo error")
+                alert("with error")
                 console.error(error);
                 console.log(status);
             }
         });
+
     });
 
 </script>
