@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class SoapController extends Controller
 {
-    public function consumeSoap()
+    public function consumeSoap(Request $request)
     {
         // Configurar el servicio SOAP
         SoapWrapper::add(function ($service) {
@@ -18,11 +18,11 @@ class SoapController extends Controller
         });
 
         // Hacer la solicitud SOAP
-        $response = SoapWrapper::call('pide.YourOperation', [
+        $response = SoapWrapper::call('pide.getListaEntidad', [
             // Parámetros de la operación si es necesario
         ]);
 
         // Manejar la respuesta como desees
-        dd($response);
+        return response()->json($response);
     }
 }

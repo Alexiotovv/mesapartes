@@ -46,6 +46,7 @@
         //                        </soapenv:Body>
         //                     </soapenv:Envelope>`;
     
+        
         // Configuración de la solicitud AJAX
         $.ajax({
             url: 'https://ws3.pide.gob.pe/services/PcmIMgdEntidad.PcmIMgdEntidadHttpsSoap11Endpoint',
