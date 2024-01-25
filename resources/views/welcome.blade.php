@@ -48,8 +48,8 @@
     
         // Configuración de la solicitud AJAX
         $.ajax({
-            url: 'http://200.48.76.125/wsiopidetramite/IOTramite?wsdl',
-            // url: 'https://ws3.pide.gob.pe/services/PcmIMgdEntidad.PcmIMgdEntidadHttpsSoap11Endpoint',
+            //url: 'http://200.48.76.125/wsiopidetramite/IOTramite?wsdl',
+            url: 'https://ws3.pide.gob.pe/services/PcmIMgdEntidad.PcmIMgdEntidadHttpsSoap11Endpoint',
             type: 'GET',
             contentType: 'text/xml',
             crossDomain: true,
