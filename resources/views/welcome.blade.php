@@ -49,17 +49,18 @@
         // Configuración de la solicitud AJAX
         $.ajax({
             url: 'https://ws3.pide.gob.pe/services/PcmIMgdEntidad.PcmIMgdEntidadHttpsSoap11Endpoint',
-            type: 'GET', // Puedes cambiar a 'POST' u otros según las necesidades del servicio
+            type: 'GET',
             contentType: 'text/xml',
-            // data: soapRequest,
+            crossDomain: true,
+            beforeSend: function(xhr) { // Agregar esta función
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "http://10.10.10.251");
+            },
             success: function (data, status, jqXHR) {
-                // Manejar la respuesta exitosa aquí
                 alert("algo ok")
                 console.log(data);
                 console.log(status);
             },
             error: function (jqXHR, status, error) {
-                // Manejar errores aquí
                 alert("algo error")
                 console.error(error);
                 console.log(status);
