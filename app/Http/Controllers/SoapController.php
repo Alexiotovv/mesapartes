@@ -15,7 +15,7 @@ class SoapController extends Controller
 {
     public function consumeSoap(Request $request)
     {
-        return response('Llego al backend', 200);
+        
         // try {
 
             // Configurar el servicio SOAP
