@@ -19,17 +19,21 @@ class SoapController extends Controller
         // try {
 
             // Configurar el servicio SOAP
-            $wsdl = 'http://200.48.76.125/wsentidad/Entidad?wsdl';
-            $client = new nusoap_client($wsdl, 'wsdl');
+            $client = new nusoap_client('https://ws3.pide.gob.pe/services/PcmIMgdEntidad.PcmIMgdEntidadHttpsSoap11Endpoint', 'wsdl');
+            
+            // 
+
+            //$client = new nusoap_client('http://200.48.76.125/wsentidad/Entidad?wsdl', 'wsdl');
             $client->soap_defencoding = 'UTF-8';
             $client->decode_utf8 = false;
 
             // Parámetros para la llamada al servicio
-            $params = ['sidcatent' => 1];
-
+            $params = ['getListaEntidad' => '1'];
+            
             // Hacer la solicitud SOAP
-            $response = $client->call('getListaEntidad', $params);
-    
+            
+            $response = $client->call('validarEntidad', $params);
+
             // Manejar la respuesta como desees
             return response()->json($response);
 
