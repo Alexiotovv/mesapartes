@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 use nusoap_client;
 
 
-
-
 class SoapController extends Controller
 {
     public function consumeSoap(Request $request)
@@ -36,7 +34,7 @@ class SoapController extends Controller
             // return response()->json($response);
 
 
-            
+
         // } catch (\Throwable $e) {
         //     return response()->json(['error' => 'Error desconocido: ' . $e->getMessage()]);
 

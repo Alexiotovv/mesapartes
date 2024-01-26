@@ -13,9 +13,9 @@
     
 <div class="row">
     <div class="col-sm-6">
-        <button class="btn btn-primary" id="btnEnviar">
+        <a href="{{route('test')}}" class="btn btn-primary" id="btnEnviar">
             Enviar
-        </button>
+        </a>
     </div>
 </div>
 
