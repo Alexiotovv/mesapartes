@@ -19,7 +19,7 @@ class SoapController extends Controller
         // try {
 
             // Configurar el servicio SOAP
-            $wsdl = 'https://ws3.pide.gob.pe/services/PcmIMgdEntidad.PcmIMgdEntidadHttpsSoap11Endpoint';
+            $wsdl = 'http://200.48.76.125/wsentidad/Entidad?wsdl';
             $client = new nusoap_client($wsdl, 'wsdl');
             $client->soap_defencoding = 'UTF-8';
             $client->decode_utf8 = false;
