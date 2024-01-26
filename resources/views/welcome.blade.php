@@ -20,53 +20,53 @@
 </div>
 
 <script>
-    $("#btnEnviar").on("click",function (e) { 
-        e.preventDefault();
+    // $("#btnEnviar").on("click",function (e) { 
+    //     e.preventDefault();
         
-        // Datos de la solicitud
-        // var soapRequest = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.wsiopidetramite.segdi.gob.pe/">
-        //                        <soapenv:Header/>
-        //                        <soapenv:Body>
-        //                           <ws:cargoResponse>
-        //                              <request>
-        //                                 <vrucentemi>20168999926</vrucentemi>
-        //                                 <vrucentrec>11111111111</vrucentrec>
-        //                                 <vcuo>0000000020</vcuo>
-        //                                 <vcuoref></vcuoref>
-        //                                 <vnumregstd>1234</vnumregstd>
-        //                                 <vanioregstd>2017</vanioregstd>
-        //                                 <dfecregstd>2017-12-27T15:21:48.857-05:00</dfecregstd>
-        //                                 <vuniorgstd>OTI</vuniorgstd>
-        //                                 <vusuregstd>ARTURO</vusuregstd>
-        //                                 <bcarstd>-1</bcarstd>
-        //                                 <vobs></vobs>
-        //                                 <cflgest>P</cflgest>
-        //                              </request>
-        //                           </ws:cargoResponse>
-        //                        </soapenv:Body>
-        //                     </soapenv:Envelope>`;
+    //     // Datos de la solicitud
+    //     // var soapRequest = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.wsiopidetramite.segdi.gob.pe/">
+    //     //                        <soapenv:Header/>
+    //     //                        <soapenv:Body>
+    //     //                           <ws:cargoResponse>
+    //     //                              <request>
+    //     //                                 <vrucentemi>20168999926</vrucentemi>
+    //     //                                 <vrucentrec>11111111111</vrucentrec>
+    //     //                                 <vcuo>0000000020</vcuo>
+    //     //                                 <vcuoref></vcuoref>
+    //     //                                 <vnumregstd>1234</vnumregstd>
+    //     //                                 <vanioregstd>2017</vanioregstd>
+    //     //                                 <dfecregstd>2017-12-27T15:21:48.857-05:00</dfecregstd>
+    //     //                                 <vuniorgstd>OTI</vuniorgstd>
+    //     //                                 <vusuregstd>ARTURO</vusuregstd>
+    //     //                                 <bcarstd>-1</bcarstd>
+    //     //                                 <vobs></vobs>
+    //     //                                 <cflgest>P</cflgest>
+    //     //                              </request>
+    //     //                           </ws:cargoResponse>
+    //     //                        </soapenv:Body>
+    //     //                     </soapenv:Envelope>`;
     
         
-        // Configuración de la solicitud AJAX
-        $.ajax({
-            url: 'https://ws3.pide.gob.pe/services/PcmIMgdEntidad.PcmIMgdEntidadHttpsSoap11Endpoint',
-            type: 'GET',
-            contentType: 'text/xml',
-            crossDomain: true,
-            success: function (data, status, jqXHR) {
-                alert("Está bien")
-                console.log(data);
-                console.log(status);
-            },
-            error: function (jqXHR, status, error) {
-                alert("Con error")
-                console.error(error);
-                console.log(status);
-            }
-        });
+    //     // Configuración de la solicitud AJAX
+    //     $.ajax({
+    //         url: 'https://ws3.pide.gob.pe/services/PcmIMgdEntidad.PcmIMgdEntidadHttpsSoap11Endpoint',
+    //         type: 'GET',
+    //         contentType: 'text/xml',
+    //         crossDomain: true,
+    //         success: function (data, status, jqXHR) {
+    //             alert("Está bien")
+    //             console.log(data);
+    //             console.log(status);
+    //         },
+    //         error: function (jqXHR, status, error) {
+    //             alert("Con error")
+    //             console.error(error);
+    //             console.log(status);
+    //         }
+    //     });
 
 
-    });
+    // });
 
 </script>
 
