@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/consume-soap', [SoapController::class, 'consumeSoap']);
+Route::get('/consume-soap', [SoapController::class, 'consumeSoap'])->name('consume.soap');
