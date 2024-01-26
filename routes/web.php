@@ -17,5 +17,6 @@ use App\Http\Controllers\SoapController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/test', function () { return 'Hello World'; });
 
 Route::get('/consume-soap', [SoapController::class, 'consumeSoap'])->name('consume.soap');
