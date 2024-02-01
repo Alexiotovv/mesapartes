@@ -19,8 +19,9 @@ Route::get('/', function () {
 });
 Route::get('/test', function () { return 'Hello World'; })->name('test');
 
+Route::get('/api_ValidarEntidad', [SoapController::class, 'api_ValidarEntidad'])->name('api_ValidarEntidad');
 Route::get('/api_CodigoUnicoOperacion', [SoapController::class, 'api_CodigoUnicoOperacion'])->name('api_CodigoUnicoOperacion');
 Route::get('/api_TipoDocumento', [SoapController::class, 'api_TipoDocumento'])->name('api_TipoDocumento');
 
-Route::get('/api_RecepcionarTramiteResponse', [SoapController::class, 'api_RecepcionarTramiteResponse'])->name('api_RecepcionarTramiteResponse');
+Route::post('/api_RecepcionarTramiteResponse', [SoapController::class, 'api_RecepcionarTramiteResponse'])->name('api_RecepcionarTramiteResponse');
 
