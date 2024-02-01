@@ -19,4 +19,8 @@ Route::get('/', function () {
 });
 Route::get('/test', function () { return 'Hello World'; })->name('test');
 
-Route::get('/consume-soap', [SoapController::class, 'consumeSoap'])->name('consume.soap');
+Route::get('/api_CodigoUnicoOperacion', [SoapController::class, 'api_CodigoUnicoOperacion'])->name('api_CodigoUnicoOperacion');
+Route::get('/api_TipoDocumento', [SoapController::class, 'api_TipoDocumento'])->name('api_TipoDocumento');
+
+Route::get('/api_RecepcionarTramiteResponse', [SoapController::class, 'api_RecepcionarTramiteResponse'])->name('api_RecepcionarTramiteResponse');
+
