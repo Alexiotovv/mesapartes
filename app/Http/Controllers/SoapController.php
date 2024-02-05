@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Http;
+
 use nusoap_client;
 
 
@@ -77,30 +79,37 @@ class SoapController extends Controller
     }
 
 
-    public function api_ValidarEntidad(Request $request){
-        $url='https://ws3.pide.gob.pe/services/PcmIMGDEntidad?wsdl';
-        $client = new nusoap_client($url, 'wsdl');
-        $client->soap_defencoding = 'UTF-8';
-        $client->decode_utf8 = false;
-        $params = [
-            // 'vrucent' => '20168999926',
-            'sidcatent' => 1,
-            
-        ];
-        $response = $client->call('getListaEntidad', $params);
-        return response()->json($response);
+    public function api_ValidarEntidad($ruc_entidad){
+        $url = 'https://ws3.pide.gob.pe/Rest/Pcm/ValidarEntidad?vrucent='.$ruc_entidad.'&out=json';
+        $response = Http::get($url);
+        $data = $response->json();
+        $resultado = $data['validarEntidadResponse']['return'];
+        return response()->json($resultado);
     }
 
 
     public function api_TipoDocumento(Request $request){
         $url='https://ws3.pide.gob.pe/services/PcmIMgdTramite?wsdl';
-        $client = new nusoap_client($url, 'wsdl');
-        $client->soap_defencoding = 'UTF-8';
-        $client->decode_utf8 = false;
-        $params = [
-            // 'ip' => '45.5.58.105',
-        ];
-        $response = $client->call('getTipoDocumento', $params);
+        //$url='http://161.132.150.56/wsiopidetramite/IOTramite?wsdl';
+        // Crear instancia de NuSOAP client
+       $client = new nusoap_client($url, true);
+
+       // Verificar si hay errores en la creación del cliente
+       $error = $client->getError();
+       if ($error) {
+           dd("Error al crear el cliente: " . $error);
+       }
+
+       // Llamada a la operación getTipoDocumento
+       $response = $client->call('getTipoDocumento');
+
+       // Verificar si hay errores en la llamada
+       $error = $client->getError();
+       if ($error) {
+           dd("Error en la llamada SOAP: " . $error);
+       }
+
+       // Manejar la respuesta según sea necesario
         return response()->json($response['return']);
 
     }
@@ -120,7 +129,7 @@ class SoapController extends Controller
                 'servicio'=>'3011'//el servicio siempre será 3011 = Envío de Documentos
             ];
             // Hacer la solicitud SOAP
-            $response = $client->call('getCUOEntidad', $params);//En produccion es getCUOEntidad
+            $response = $client->call('getCUO', $params);//En produccion es getCUOEntidad
 
             if ($client->fault) {
                 return response()->json([

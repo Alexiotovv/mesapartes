@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 Route::get('/test', function () { return 'Hello World'; })->name('test');
 
-Route::get('/api_ValidarEntidad', [SoapController::class, 'api_ValidarEntidad'])->name('api_ValidarEntidad');
+Route::get('/api_ValidarEntidad/{ruc_entidad}', [SoapController::class, 'api_ValidarEntidad'])->name('api_ValidarEntidad');
 Route::get('/api_CodigoUnicoOperacion', [SoapController::class, 'api_CodigoUnicoOperacion'])->name('api_CodigoUnicoOperacion');
 Route::get('/api_TipoDocumento', [SoapController::class, 'api_TipoDocumento'])->name('api_TipoDocumento');
 
