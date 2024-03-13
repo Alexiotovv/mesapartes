@@ -49,27 +49,30 @@ class SoapController extends Controller
             // // 'ctipdociderem'=>request('ctipdociderem'),
             // // 'vnumdociderem'=>request('vnumdociderem'),
             
-            'vrucentrem'=>'20493196902', //Ruc quien emite Será siempre Gorel
-            'Vrucentrec'=>'20493196902', //Ruc quien recibe
-            'vnomentemi'=>'GRL', //Nombre Entidad quien Emite
-            'Vuniorgrem'=>'MPV', //Nombre Unidad Orgánica quien Emite
-            'vcuo'=>'4010337392',//Código Único de Operación===========(API)
-            'vcuoref'=>'',//NO OBLIGATORIO
-            'ccodtipdoc'=>'02',//01=OFICIO,02=CARTA ============(API)
-            'vnumdoc'=>'1532024',
-            'dfecdoc'=>'2027-02-01T08:44:55.857-05:00',
-            'vuniorgdst'=>'OTI',
-            'vnomdst'=>'JUAN',
-            'vnomcardst'=>'PEREZ',
-            'vasu'=>'ASUNTO DOC PRUEBA',
-            'snumanx'=>'2',//Mayor igual a 0 (cero)
-            'snumfol'=>'10',
+
+            //TABLA PIDE
+            'vrucentrem'=>'20493196902', //RUC de la Entidad remitente de los datos (esto puede cambiar)
+            'Vrucentrec'=>'20493196902', //RUC de la Entidad recepciona los datos(siempre será GOREL)
+            'vnomentemi'=>'GRL', //Nombre de la Entidad que emite los datos
+            'Vuniorgrem'=>'MPV', //Unidad orgánica que remite el documento
+            'vcuo'=>'4010337392', //Código único de operación======(API)
+            'vcuoref'=>'', //Código único de operación de referencia NO OBLIGATORIO
+            'ccodtipdoc'=>'02', //Tipo de documento 01=OFICIO,02=CARTA =======(API)
+            'vnumdoc'=>'1532024', //**Número de documento
+            'dfecdoc'=>'2027-02-01T08:44:55.857-05:00', //Fecha del documento
+            
+            'vuniorgdst'=>'OTI', // **Nombre de la unidad orgánica de destino-OFICINA
+            'vnomdst'=>'JUAN', //Nombre del destinatario
+            'vnomcardst'=>'PEREZ', //Nombre del cargo del destinatario
+            'vasu'=>'ASUNTO DOC PRUEBA',//Asunto
+            'snumanx'=>'2',//Número de Anexos [0 o Mayor a 0]
+            'snumfol'=>'10',//Número de folios
             'bpdfdoc'=>'1',//Documento Principal
             'vnomdoc'=>'XXXA786', //Nombre del Documento
-            'lstanexos-vnomdoc'=>'',//NO OBLIGATORIO
+            'lstanexos-vnomdoc'=>'',//Listado de Anexos [Solo si snumanx Mayor a 0] Nombre del documentoNO OBLIGATORIO
             'vurldocanx'=>'https://mesadepartes.regionloreto.gob.pe/documentos/mpv/doc0001.pdf',//NO OBLIGATORIO
             'ctipdociderem'=>'1',//1=DNI, 2=CARNET DE EXTRANJERIA
-            'vnumdociderem'=>'45690475',//N° Doc Identidad
+            'vnumdociderem'=>'45690475',//N° DOC IDENTIDAD
 
         ];
         // Hacer la solicitud SOAP
@@ -87,18 +90,11 @@ class SoapController extends Controller
         return response()->json($resultado);
     }
 
-
     public function api_TipoDocumento(Request $request){
         $url='https://ws3.pide.gob.pe/services/PcmIMgdTramite?wsdl';
         //$url='http://161.132.150.56/wsiopidetramite/IOTramite?wsdl';
         // Crear instancia de NuSOAP client
        $client = new nusoap_client($url, true);
-
-       // Verificar si hay errores en la creación del cliente
-       $error = $client->getError();
-       if ($error) {
-           dd("Error al crear el cliente: " . $error);
-       }
 
        // Llamada a la operación getTipoDocumento
        $response = $client->call('getTipoDocumento');
@@ -106,10 +102,10 @@ class SoapController extends Controller
        // Verificar si hay errores en la llamada
        $error = $client->getError();
        if ($error) {
-           dd("Error en la llamada SOAP: " . $error);
+        return response()->json("Error en la llamada SOAP: " . $error);
        }
 
-       // Manejar la respuesta según sea necesario
+        // Manejar la respuesta según sea necesario
         return response()->json($response['return']);
 
     }

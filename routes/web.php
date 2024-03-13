@@ -23,5 +23,5 @@ Route::get('/api_ValidarEntidad/{ruc_entidad}', [SoapController::class, 'api_Val
 Route::get('/api_CodigoUnicoOperacion', [SoapController::class, 'api_CodigoUnicoOperacion'])->name('api_CodigoUnicoOperacion');
 Route::get('/api_TipoDocumento', [SoapController::class, 'api_TipoDocumento'])->name('api_TipoDocumento');
 
-Route::post('/api_RecepcionarTramiteResponse', [SoapController::class, 'api_RecepcionarTramiteResponse'])->name('api_RecepcionarTramiteResponse');
+Route::get('/api_RecepcionarTramiteResponse', [SoapController::class, 'api_RecepcionarTramiteResponse'])->name('api_RecepcionarTramiteResponse');
 
