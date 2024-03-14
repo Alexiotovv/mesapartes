@@ -62,7 +62,7 @@ class MesapartesController extends Controller
             $direccion=request('direccion');
 
             $user = User::where('email', $email)->get()[0]->id;
-
+            return response()->json(['eureka'=>$user], 200);
             if ($user) { //Cuando el usuario existe actualiza userdetails
                 $uds=userdetails::where('id_user',$user)->get()[0]->id;
                 $ud= userdetails::findOrFail($uds);
