@@ -161,9 +161,9 @@ class MesapartesController extends Controller
             
             
         } catch (\Throwable $th) {
-            if ($th=='') {
-                $th='Error Server';
-            }
+            // if ($th=='') {
+            //     $th='Error Server';
+            // }
             return response()->json(['data'=>$th], 500);
         }
         
