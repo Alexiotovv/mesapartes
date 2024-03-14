@@ -61,11 +61,13 @@ class MesapartesController extends Controller
             $telefono=request('telefono');
             $direccion=request('direccion');
 
-            $user = User::where('email', $email)->get()[0]->id;
-            // $user = User::where('email', $email)->get();
+            $user = User::where('email', $email)->get();
+            // $user = User::where('email', $email)->get()[0]->id;
+            
+            
+            // return response()->json(['el usuario'=>$user], 200);
             
             if ($user) { //Cuando el usuario existe actualiza userdetails
-                return response()->json(['el usuario ya existe'=>$user], 200);
 
                 $uds=userdetails::where('id_user',$user)->get()[0]->id;
                 $ud= userdetails::findOrFail($uds);
