@@ -154,10 +154,11 @@ class MesapartesController extends Controller
             }
 
             // $users = DB::connection('external')->select('select * from users');
-            $resultados = DB::connection('sqlsrv')->select('EXEC get_correlativo ?',array(2024));
+            
+            // $resultados = DB::connection('sqlsrv')->select('EXEC get_correlativo ?',array(2024));
 
 
-            return response()->json(['data'=>$resultados], 200);
+            return response()->json(['data'=>'heey'], 200);
             
             
         // } catch (\Throwable $th) {
