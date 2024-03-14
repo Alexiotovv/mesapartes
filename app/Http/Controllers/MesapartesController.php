@@ -34,7 +34,7 @@ class MesapartesController extends Controller
     public function store(Request $request)
     {
 
-        // try {
+        try {
             //Datos de usuario
             $email=request('email');
             
@@ -160,12 +160,12 @@ class MesapartesController extends Controller
             return response()->json(['data'=>$resultados], 200);
             
             
-        // } catch (\Throwable $th) {
-        //     if ($th=='') {
-        //         $th='Error Server';
-        //     }
-        //     return response()->json(['data'=>$th], 500);
-        // }
+        } catch (\Throwable $th) {
+            if ($th=='') {
+                $th='Error Server';
+            }
+            return response()->json(['data'=>$th], 500);
+        }
         
         
 
