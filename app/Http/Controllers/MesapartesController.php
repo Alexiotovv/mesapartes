@@ -31,17 +31,9 @@ class MesapartesController extends Controller
     }
     public function test(Request $request)
     {
-        $documento=request('documento');
-        if ($request->hasFile('documento')){
-            $file = request('documento')->getClientOriginalName();//archivo recibido
-            $filename = pathinfo($file, PATHINFO_FILENAME);//nombre archivo sin extension
-            $extension = request('documento')->getClientOriginalExtension();//extensión
-            $archivo= $filename.'_'.time().'.'.$extension;//
-            // request('documento')->storeAs('local/documentos/',$archivo,'local');//refiere carpeta publica es el nombre de disco
+        $documento = $request->file('documento');
 
-        }
-
-        $response = Http::post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php', [
+        $response = Http::withoutVerifying()->post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php', [
             'user:' => 'mesapartevirutal199.',
             'password:' => 'gobierno.2024++',
             'archivo' => $documento,
@@ -49,6 +41,16 @@ class MesapartesController extends Controller
         
         return response()->json(['data'=>'success'], 200);
     }
+
+
+           // if ($request->hasFile('documento')){
+        //     $file = request('documento')->getClientOriginalName();//archivo recibido
+        //     $filename = pathinfo($file, PATHINFO_FILENAME);//nombre archivo sin extension
+        //     $extension = request('documento')->getClientOriginalExtension();//extensión
+        //     $archivo= $filename.'_'.time().'.'.$extension;//
+        //     // request('documento')->storeAs('local/documentos/',$archivo,'local');//refiere carpeta publica es el nombre de disco
+
+        // }
 
     /**
      * Store a newly created resource in storage.
