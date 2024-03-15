@@ -35,6 +35,7 @@ Route::middleware('jwt.auth')->get('/users', [UserController::class,'users']);
 
 //Mesa de Partes
 Route::post('/mesapartes/store/', [MesapartesController::class,'store']);
+Route::post('/mesapartes/test/', [MesapartesController::class,'test']);
 
 //TipoPersonas
 Route::get('/mesapartes/tipopersonas/', [TipoPersonasController::class,'show']);

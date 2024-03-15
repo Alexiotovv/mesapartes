@@ -8,6 +8,8 @@ use App\Models\userdetails;
 use App\Models\documentos_anexos;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
+
 use DB;
 
 class MesapartesController extends Controller
@@ -26,6 +28,27 @@ class MesapartesController extends Controller
     public function create()
     {
         //
+    }
+    public function test(Request $request)
+    {
+        $documento=request('documento');
+        if ($request->hasFile('documento')){
+            $file = request('documento')->getClientOriginalName();//archivo recibido
+            $filename = pathinfo($file, PATHINFO_FILENAME);//nombre archivo sin extension
+            $extension = request('documento')->getClientOriginalExtension();//extensión
+            $archivo= $filename.'_'.time().'.'.$extension;//
+            // request('documento')->storeAs('local/documentos/',$archivo,'local');//refiere carpeta publica es el nombre de disco
+            
+
+        }
+
+        $response = Http::post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php', [
+            'user:' => 'mesapartevirutal199.',
+            'password:' => 'gobierno.2024++',
+            'archivo' => $archivo,
+        ]);
+        
+        return response()->json(['data'=>'success'], 200);
     }
 
     /**
