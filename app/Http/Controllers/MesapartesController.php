@@ -39,7 +39,9 @@ class MesapartesController extends Controller
             'archivo' => $documento,
         ]);
         
-        return response()->json(['data'=>'success'], 200);
+        $mensajeDelServidor = $response->body();
+
+        return response()->json(['data'=>$mensajeDelServidor], 200);
     }
 
 
