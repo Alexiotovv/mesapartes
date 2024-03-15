@@ -91,8 +91,9 @@ class MesapartesController extends Controller
                 $usr->email=$email;
                 $usr->password='#2024$1dcd32A21';
                 $usr->save();
-                $id_usuario = User::latest()->value('id');
-                
+                // $id_usuario = User::latest()->value('id');
+                return response()->json(['data'=>$usr->id], 200);
+
                 //Registra detalle del nuevo usuario
                 $ud = new userdetails();
                 $ud->id_user = $id_usuario;
@@ -126,7 +127,7 @@ class MesapartesController extends Controller
                 return response()->json(['data'=>'Documento Principal es requerido'], 500);
             }
             
-            $mpv->id_user =  $user;
+            $mpv->id_user =  $user[0]->id;
             $mpv->id_tipodocumentos = $tipo_documento;
             $mpv->numero_documento = $nro_documento;
             $mpv->asunto= $asunto;
