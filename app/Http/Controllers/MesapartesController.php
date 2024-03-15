@@ -38,14 +38,13 @@ class MesapartesController extends Controller
             $extension = request('documento')->getClientOriginalExtension();//extensión
             $archivo= $filename.'_'.time().'.'.$extension;//
             // request('documento')->storeAs('local/documentos/',$archivo,'local');//refiere carpeta publica es el nombre de disco
-            
 
         }
 
         $response = Http::post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php', [
             'user:' => 'mesapartevirutal199.',
             'password:' => 'gobierno.2024++',
-            'archivo' => $archivo,
+            'archivo' => $documento,
         ]);
         
         return response()->json(['data'=>'success'], 200);
