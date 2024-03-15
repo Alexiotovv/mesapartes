@@ -82,8 +82,7 @@ class MesapartesController extends Controller
                 $ud->direccion=$direccion;
                 $ud->save();
             }else{
-                //return response()->json(['data'=>$user], 200);
-                //Cuando no existe el Usuario Registra Nuevo
+
                 $nombre=explode(' ',$nombre);
                 $nombre=$nombre[0];
                 $usr = new User();
