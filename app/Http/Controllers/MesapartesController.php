@@ -62,15 +62,15 @@ class MesapartesController extends Controller
             $direccion=request('direccion');
 
             $user = User::where('email', $email)->get();
+            $id_usuario=0;
+
             // $user = User::where('email', $email)->get()[0]->id;
-            
-            
-            // return response()->json(['el usuario'=>$user], 200);
             
             if ($user->count()>0) { //Cuando el usuario existe actualiza userdetails
                 // return response()->json(['data'=>'usuario existe'], 200);
-                $uds=userdetails::where('id_user',$user[0]->id)->get()[0]->id;
-                $ud= userdetails::findOrFail($uds);
+                $id_usuario=$user[0]->id;
+                $uds = userdetails::where('id_user',$id_usuario)->get()[0]->id;
+                $ud = userdetails::findOrFail($uds);
                 $ud->id_tipopersona=$tipo_persona;
                 $ud->id_tipodocumentoidentidad=$tipo_docidentidad;
                 $ud->dni_ce=$dni_ce;
@@ -91,12 +91,12 @@ class MesapartesController extends Controller
                 $usr->email=$email;
                 $usr->password='#2024$1dcd32A21';
                 $usr->save();
-                // $id_usuario = User::latest()->value('id');
-                return response()->json(['data'=>$usr->id], 200);
+                $id_usuario=$usr->id;
 
                 //Registra detalle del nuevo usuario
+               
                 $ud = new userdetails();
-                $ud->id_user = $id_usuario;
+                $ud->id_user = $usr->id;
                 $ud->id_tipopersona=$tipo_persona;
                 $ud->id_tipodocumentoidentidad=$tipo_docidentidad;
                 $ud->dni_ce=$dni_ce;
@@ -127,7 +127,7 @@ class MesapartesController extends Controller
                 return response()->json(['data'=>'Documento Principal es requerido'], 500);
             }
             
-            $mpv->id_user =  $user[0]->id;
+            $mpv->id_user =  $id_usuario;
             $mpv->id_tipodocumentos = $tipo_documento;
             $mpv->numero_documento = $nro_documento;
             $mpv->asunto= $asunto;
