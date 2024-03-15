@@ -68,7 +68,7 @@ class MesapartesController extends Controller
             // return response()->json(['el usuario'=>$user], 200);
             
             if ($user) { //Cuando el usuario existe actualiza userdetails
-                return response()->json(['data'=>'entro en existe usuario'], 200);
+                return response()->json(['data'=>$user], 200);
                 $uds=userdetails::where('id_user',$user)->get()[0]->id;
                 $ud= userdetails::findOrFail($uds);
                 $ud->id_tipopersona=$tipo_persona;
