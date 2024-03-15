@@ -68,8 +68,8 @@ class MesapartesController extends Controller
             // return response()->json(['el usuario'=>$user], 200);
             
             if ($user->count()>0) { //Cuando el usuario existe actualiza userdetails
-                return response()->json(['data'=>'usuario existe'], 200);
-                $uds=userdetails::where('id_user',$user)->get()[0]->id;
+                // return response()->json(['data'=>'usuario existe'], 200);
+                $uds=userdetails::where('id_user',$user[0]->id)->get()[0]->id;
                 $ud= userdetails::findOrFail($uds);
                 $ud->id_tipopersona=$tipo_persona;
                 $ud->id_tipodocumentoidentidad=$tipo_docidentidad;
@@ -82,7 +82,7 @@ class MesapartesController extends Controller
                 $ud->direccion=$direccion;
                 $ud->save();
             }else{
-                return response()->json(['data'=>$user], 200);
+                //return response()->json(['data'=>$user], 200);
                 //Cuando no existe el Usuario Registra Nuevo
                 $nombre=explode(' ',$nombre);
                 $nombre=$nombre[0];
