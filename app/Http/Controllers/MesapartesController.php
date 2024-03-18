@@ -33,8 +33,13 @@ class MesapartesController extends Controller
     {
         $documento = request('archivo');
         
-        $response = Http::withoutVerifying()->post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php',
-        [
+        // $response = Http::withoutVerifying()->post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php',
+        // [
+        //     'user' => 'mesapartevirutal199.',
+        //     'password' => 'gobierno.2024++',
+        //     'archivo' => $documento,
+        // ]);
+        $response = Http::withoutVerifying()->asForm()->post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php', [
             'user' => 'mesapartevirutal199.',
             'password' => 'gobierno.2024++',
             'archivo' => $documento,
