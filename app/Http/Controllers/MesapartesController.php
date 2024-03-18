@@ -32,13 +32,6 @@ class MesapartesController extends Controller
     public function test(Request $request)
     {
         $documento = request('archivo');
-        
-        // $response = Http::withoutVerifying()->post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php',
-        // [
-        //     'user' => 'mesapartevirutal199.',
-        //     'password' => 'gobierno.2024++',
-        //     'archivo' => $documento,
-        // ]);
         $response = Http::withoutVerifying()
         ->attach('archivo', file_get_contents($documento), $documento->getClientOriginalName())
         ->post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php', [
@@ -52,22 +45,13 @@ class MesapartesController extends Controller
     }
 
 
-           // if ($request->hasFile('documento')){
-        //     $file = request('documento')->getClientOriginalName();//archivo recibido
-        //     $filename = pathinfo($file, PATHINFO_FILENAME);//nombre archivo sin extension
-        //     $extension = request('documento')->getClientOriginalExtension();//extensión
-        //     $archivo= $filename.'_'.time().'.'.$extension;//
-        //     // request('documento')->storeAs('local/documentos/',$archivo,'local');//refiere carpeta publica es el nombre de disco
-
-        // }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
 
-        // try {
+        try {
             //Datos de usuario
             $email=request('email');
             
@@ -96,11 +80,9 @@ class MesapartesController extends Controller
 
             $user = User::where('email', $email)->get();
             $id_usuario=0;
-
-            // $user = User::where('email', $email)->get()[0]->id;
             
             if ($user->count()>0) { //Cuando el usuario existe actualiza userdetails
-                // return response()->json(['data'=>'usuario existe'], 200);
+
                 $id_usuario=$user[0]->id;
                 $uds = userdetails::where('id_user',$id_usuario)->get()[0]->id;
                 $ud = userdetails::findOrFail($uds);
@@ -126,7 +108,6 @@ class MesapartesController extends Controller
                 $id_usuario=$usr->id;
 
                 //Registra detalle del nuevo usuario
-               
                 $ud = new userdetails();
                 $ud->id_user = $usr->id;
                 $ud->id_tipopersona=$tipo_persona;
@@ -175,8 +156,6 @@ class MesapartesController extends Controller
             //Verificando anexos
             if ($request->hasFile('documento_anexos')){
                 $files=$request->file('documento_anexos');
-                // return response()->json(['data'=>'si hay anexos'], 200);
-                // dd($files);
                 foreach ($files as $f) {
                     $file = $f->getClientOriginalName();//archivo recibido
                     $filename = pathinfo($file, PATHINFO_FILENAME);//nombre archivo sin extension
@@ -192,22 +171,26 @@ class MesapartesController extends Controller
                 }
             }
 
-            // $users = DB::connection('external')->select('select * from users');
+            // $resultados = DB::connection('sqlsrv')->select('EXEC get_correlativo ?',array(2024));
             
-            $resultados = DB::connection('sqlsrv')->select('EXEC get_correlativo ?',array(2024));
+            $documento = request('documento');
+            $response = Http::withoutVerifying()
+            ->attach('archivo', file_get_contents($documento), $documento->getClientOriginalName())
+            ->post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php', [
+                'user' => 'mesapartevirutal199.',
+                'password' => 'gobierno.2024++',
+            ]);
+            
+            $mensajeDelServidor = $response->body();
+    
+            return response()->json(['data'=>'Registro Satisfactorio'], 200);
 
-
-            return response()->json(['data'=>'heey'], 200);
-            
-            
-        // } catch (\Throwable $th) {
-        //     // if ($th=='') {
-        //     //     $th='Error Server';
-        //     // }
-        //     return response()->json(['data'=>$th], 500);
-        // }
-        
-        
+        } catch (\Throwable $th) {
+            // if ($th=='') {
+            //     $th='Error Server';
+            // }
+            return response()->json(['data'=>$th], 500);
+        }
 
     }
 
