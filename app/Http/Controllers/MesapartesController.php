@@ -31,7 +31,7 @@ class MesapartesController extends Controller
     }
     public function test(Request $request)
     {
-        $documento = request('documento');
+        $documento = request('archivo');
         
         $response = Http::withoutVerifying()->post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php',
         [
