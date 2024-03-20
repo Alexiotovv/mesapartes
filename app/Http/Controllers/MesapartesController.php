@@ -139,7 +139,7 @@ class MesapartesController extends Controller
             }else{
                 return response()->json(['data'=>'Documento Principal es requerido'], 500);
             }
-            
+
             $mpv->id_user =  $id_usuario;
             $mpv->id_tipodocumentos = $tipo_documento;
             $mpv->numero_documento = $nro_documento;
@@ -173,16 +173,24 @@ class MesapartesController extends Controller
 
             // $resultados = DB::connection('sqlsrv')->select('EXEC get_correlativo ?',array(2024));
             
-            $documento = request('documento');
-            $response = Http::withoutVerifying()
-            ->attach('archivo', file_get_contents($documento), $documento->getClientOriginalName())
-            ->post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php', [
-                'user' => 'mesapartevirutal199.',
-                'password' => 'gobierno.2024++',
-            ]);
+            // $documento = request('documento');
+            // $response = Http::withoutVerifying()
+            // ->attach('archivo', file_get_contents($documento), $documento->getClientOriginalName())
+            // ->post('https://aplicaciones04.regionloreto.gob.pe/mpv/file_controller.php', [
+            //     'user' => 'mesapartevirutal199.',
+            //     'password' => 'gobierno.2024++',
+            // ]);
             
-            $mensajeDelServidor = $response->body();
-    
+            // $mensajeDelServidor = $response->body();
+            // $emailContent = "Hola, su documento fu enviado con éxito, tan pronto revisemos su expediente, nos comunicaremos con Ud.:\n\n
+            // Gracias por usar nuestro servicio de mesa de partes.";
+
+            // //Envía el correo de verificación
+            // Mail::raw($emailContent, function ($message) use ($user) {
+            //     $message->to($user->$email);
+            //     $message->subject('Expediente Recibido');
+            // });
+
             return response()->json(['data'=>'Registro Satisfactorio'], 200);
 
         } catch (\Throwable $th) {

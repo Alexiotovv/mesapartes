@@ -89,23 +89,11 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            // 'encrypt' => env('DB_ENCRYPT', 'yes'),
-            // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
+            'encrypt' => env('DB_ENCRYPT', 'yes'),
+            'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
-        // 'sqlsrv' => [
-        //     'driver' => 'sqlsrv',
-        //     'host' => env('DB_HOST','10.10.10.80'),
-        //     'port' => env('DB_PORT','1433'), // Por ejemplo, 3306 para MySQL
-        //     'database' => env('DB_DATABASE', 'dev_tramite'),
-        //     'username' => env('DB_USERNAME', 'sa'),
-        //     'password' => env('DB_PASSWORD', 'Gobierno.'),
-        //     'charset' => 'utf8mb4',
-        //     'collation' => 'utf8mb4_unicode_ci',
-        //     'prefix' => '',
-        //     'strict' => false,
-        //     'engine' => null,
-        // ],
+
 
     ],
 
