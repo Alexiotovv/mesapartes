@@ -182,15 +182,15 @@ class MesapartesController extends Controller
             //     'password' => 'gobierno.2024++',
             // ]);
             
-            // $mensajeDelServidor = $response->body();
-            $emailContent = "Hola, su documento fu enviado con éxito, tan pronto revisemos su expediente, nos comunicaremos con Ud.:\n\n
-            Gracias por usar nuestro servicio de mesa de partes.";
+            
+            // $emailContent = "Hola, su documento fu enviado con éxito, tan pronto revisemos su expediente, nos comunicaremos con Ud.:\n\n
+            // Gracias por usar nuestro servicio de mesa de partes.";
                 
-            //Envía el correo de verificación
-            Mail::raw($emailContent, function ($message){
-                $message->to('gpsalexvasquez@gmail.com');
-                $message->subject('Expediente Recibido');
-            });
+            // //Envía el correo de verificación
+            // Mail::raw($emailContent, function ($message){
+            //     $message->to('gpsalexvasquez@gmail.com');
+            //     $message->subject('Expediente Recibido');
+            // });
 
             return response()->json(['data'=>'Registro Satisfactorio'], 200);
 
