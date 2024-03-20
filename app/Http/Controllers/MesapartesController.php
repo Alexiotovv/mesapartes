@@ -9,6 +9,7 @@ use App\Models\documentos_anexos;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 use DB;
 
@@ -51,7 +52,7 @@ class MesapartesController extends Controller
     public function store(Request $request)
     {
 
-        try {
+        // try {
             //Datos de usuario
             $email=request('email');
             
@@ -182,23 +183,23 @@ class MesapartesController extends Controller
             // ]);
             
             // $mensajeDelServidor = $response->body();
-            // $emailContent = "Hola, su documento fu enviado con éxito, tan pronto revisemos su expediente, nos comunicaremos con Ud.:\n\n
-            // Gracias por usar nuestro servicio de mesa de partes.";
-
-            // //Envía el correo de verificación
-            // Mail::raw($emailContent, function ($message) use ($user) {
-            //     $message->to($user->$email);
-            //     $message->subject('Expediente Recibido');
-            // });
+            $emailContent = "Hola, su documento fu enviado con éxito, tan pronto revisemos su expediente, nos comunicaremos con Ud.:\n\n
+            Gracias por usar nuestro servicio de mesa de partes.";
+                
+            //Envía el correo de verificación
+            Mail::raw($emailContent, function ($message){
+                $message->to('gpsalexvasquez@gmail.com');
+                $message->subject('Expediente Recibido');
+            });
 
             return response()->json(['data'=>'Registro Satisfactorio'], 200);
 
-        } catch (\Throwable $th) {
-            // if ($th=='') {
-            //     $th='Error Server';
-            // }
-            return response()->json(['data'=>$th], 500);
-        }
+        // } catch (\Throwable $th) {
+        //     if ($th=='') {
+        //         $th='Error Server';
+        //     }
+        //     return response()->json(['data'=>$th], 500);
+        // }
 
     }
 
